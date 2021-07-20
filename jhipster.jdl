@@ -1,0 +1,62 @@
+entity Compra {
+    datacompra Instant,
+    idPedido Integer,
+    quantidade Integer,  
+    status Status
+}
+
+enum Status {
+    PAGO, AGUARDANDO_CONFIRMACAO, ROTA_ENTREGA, ENTREGUE
+}
+
+entity Usuario{
+    usuario String,
+    nome String,
+    sobrenome String,
+    email String,
+    senha String,
+    telefone String,
+    status StatusUsuario
+}
+enum StatusUsuario {
+    ATIVO, INATIVO
+}
+
+entity Produto{
+    nome String,
+    descricao String,
+    quantidade Integer,
+    preco Double
+}
+
+entity Supermercado{
+    nome String,    
+    cnpj String  
+}
+
+relationship OneToMany {
+	Usuario{compra(id)} to Compra
+}
+
+relationship ManyToMany{
+	Produto{Compra(id)} to Compra{Produto(id)},    
+}
+
+relationship ManyToMany{
+	Produto{Supermercado(id)} to Supermercado{Produto(id)},    
+}
+
+// Set pagination options
+paginate Usuario with infinite-scroll
+paginate Produto, Compra, Supermercado with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl 
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
+
+

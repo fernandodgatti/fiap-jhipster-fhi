@@ -1,0 +1,90 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-compra-heading" data-cy="CompraCreateUpdateHeading" jhiTranslate="comparsApp.compra.home.createOrEditLabel">
+        Create or edit a Compra
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="comparsApp.compra.datacompra" for="field_datacompra">Datacompra</label>
+          <div class="d-flex">
+            <input
+              id="field_datacompra"
+              data-cy="datacompra"
+              type="datetime-local"
+              class="form-control"
+              name="datacompra"
+              formControlName="datacompra"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="comparsApp.compra.idPedido" for="field_idPedido">Id Pedido</label>
+          <input type="number" class="form-control" name="idPedido" id="field_idPedido" data-cy="idPedido" formControlName="idPedido" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="comparsApp.compra.quantidade" for="field_quantidade">Quantidade</label>
+          <input
+            type="number"
+            class="form-control"
+            name="quantidade"
+            id="field_quantidade"
+            data-cy="quantidade"
+            formControlName="quantidade"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="comparsApp.compra.status" for="field_status">Status</label>
+          <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+            <option [ngValue]="null">{{ 'comparsApp.Status.null' | translate }}</option>
+            <option value="PAGO">{{ 'comparsApp.Status.PAGO' | translate }}</option>
+            <option value="AGUARDANDO_CONFIRMACAO">{{ 'comparsApp.Status.AGUARDANDO_CONFIRMACAO' | translate }}</option>
+            <option value="ROTA_ENTREGA">{{ 'comparsApp.Status.ROTA_ENTREGA' | translate }}</option>
+            <option value="ENTREGUE">{{ 'comparsApp.Status.ENTREGUE' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="comparsApp.compra.usuario" for="field_usuario">Usuario</label>
+          <select class="form-control" id="field_usuario" data-cy="usuario" name="usuario" formControlName="usuario">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="usuarioOption.id === editForm.get('usuario')!.value?.id ? editForm.get('usuario')!.value : usuarioOption"
+              *ngFor="let usuarioOption of usuariosSharedCollection; trackBy: trackUsuarioById"
+            >
+              {{ usuarioOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

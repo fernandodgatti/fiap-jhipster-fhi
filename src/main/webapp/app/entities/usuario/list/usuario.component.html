@@ -1,0 +1,98 @@
+<div>
+  <h2 id="page-heading" data-cy="UsuarioHeading">
+    <span jhiTranslate="comparsApp.usuario.home.title">Usuarios</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="comparsApp.usuario.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-usuario"
+        [routerLink]="['/usuario/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="comparsApp.usuario.home.createLabel"> Create a new Usuario </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="usuarios?.length === 0">
+    <span jhiTranslate="comparsApp.usuario.home.notFound">No usuarios found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="usuarios && usuarios.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="usuario">
+            <span jhiTranslate="comparsApp.usuario.usuario">Usuario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="nome"><span jhiTranslate="comparsApp.usuario.nome">Nome</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="sobrenome">
+            <span jhiTranslate="comparsApp.usuario.sobrenome">Sobrenome</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="email"><span jhiTranslate="comparsApp.usuario.email">Email</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="senha"><span jhiTranslate="comparsApp.usuario.senha">Senha</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="telefone">
+            <span jhiTranslate="comparsApp.usuario.telefone">Telefone</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="comparsApp.usuario.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let usuario of usuarios; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/usuario', usuario.id, 'view']">{{ usuario.id }}</a>
+          </td>
+          <td>{{ usuario.usuario }}</td>
+          <td>{{ usuario.nome }}</td>
+          <td>{{ usuario.sobrenome }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>{{ usuario.senha }}</td>
+          <td>{{ usuario.telefone }}</td>
+          <td jhiTranslate="{{ 'comparsApp.StatusUsuario.' + usuario.status }}">{{ usuario.status }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/usuario', usuario.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/usuario', usuario.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(usuario)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

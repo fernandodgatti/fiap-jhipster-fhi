@@ -1,0 +1,48 @@
+{
+  "name": "Compra",
+  "fields": [
+    {
+      "fieldName": "datacompra",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "idPedido",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "quantidade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Status",
+      "fieldValues": "PAGO,AGUARDANDO_CONFIRMACAO,ROTA_ENTREGA,ENTREGUE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "usuario",
+      "otherEntityRelationshipName": "compra",
+      "relationshipName": "usuario"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "produto",
+      "otherEntityRelationshipName": "compra",
+      "relationshipName": "produto",
+      "otherEntityField": "id",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "compra",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210720005151"
+}

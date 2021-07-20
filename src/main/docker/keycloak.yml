@@ -1,5 +1,5 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-version: '3.8'
+version: '3.0'
 services:
   keycloak:
     image: jboss/keycloak:12.0.4
@@ -12,6 +12,7 @@ services:
         '-Dkeycloak.migration.dir=/opt/jboss/keycloak/realm-config',
         '-Dkeycloak.migration.strategy=OVERWRITE_EXISTING',
         '-Djboss.socket.binding.port-offset=1000',
+        '-Dkeycloak.ssl-required=NONE',
         '-Dkeycloak.profile.feature.upload_scripts=enabled',
       ]
     volumes:

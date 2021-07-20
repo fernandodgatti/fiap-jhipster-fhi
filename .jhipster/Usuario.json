@@ -1,0 +1,53 @@
+{
+  "name": "Usuario",
+  "fields": [
+    {
+      "fieldName": "usuario",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "sobrenome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "senha",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StatusUsuario",
+      "fieldValues": "ATIVO,INATIVO"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "compra",
+      "otherEntityRelationshipName": "usuario",
+      "relationshipName": "compra",
+      "otherEntityField": "id"
+    }
+  ],
+  "entityTableName": "usuario",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210720005152"
+}

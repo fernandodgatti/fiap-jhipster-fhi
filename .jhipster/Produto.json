@@ -1,0 +1,49 @@
+{
+  "name": "Produto",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "quantidade",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "preco",
+      "fieldType": "Double"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "compra",
+      "otherEntityRelationshipName": "produto",
+      "relationshipName": "compra",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "supermercado",
+      "otherEntityRelationshipName": "produto",
+      "relationshipName": "supermercado",
+      "otherEntityField": "id",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "produto",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210720005153"
+}

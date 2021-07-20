@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="usuario">
+      <h2 data-cy="usuarioDetailsHeading"><span jhiTranslate="comparsApp.usuario.detail.title">Usuario</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ usuario.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.usuario">Usuario</span></dt>
+        <dd>
+          <span>{{ usuario.usuario }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.nome">Nome</span></dt>
+        <dd>
+          <span>{{ usuario.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.sobrenome">Sobrenome</span></dt>
+        <dd>
+          <span>{{ usuario.sobrenome }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.email">Email</span></dt>
+        <dd>
+          <span>{{ usuario.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.senha">Senha</span></dt>
+        <dd>
+          <span>{{ usuario.senha }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.telefone">Telefone</span></dt>
+        <dd>
+          <span>{{ usuario.telefone }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.usuario.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'comparsApp.StatusUsuario.' + usuario.status }}">{{ usuario.status }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/usuario', usuario.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

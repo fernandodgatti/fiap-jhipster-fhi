@@ -1,0 +1,11 @@
+{
+  "comparsApp": {
+    "Status": {
+      "null": "",
+      "PAGO": "PAGO",
+      "AGUARDANDO_CONFIRMACAO": "AGUARDANDO_CONFIRMACAO",
+      "ROTA_ENTREGA": "ROTA_ENTREGA",
+      "ENTREGUE": "ENTREGUE"
+    }
+  }
+}

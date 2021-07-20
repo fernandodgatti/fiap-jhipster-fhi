@@ -1,0 +1,9 @@
+{
+  "comparsApp": {
+    "StatusUsuario": {
+      "null": "",
+      "ATIVO": "ATIVO",
+      "INATIVO": "INATIVO"
+    }
+  }
+}

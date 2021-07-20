@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="compra">
+      <h2 data-cy="compraDetailsHeading"><span jhiTranslate="comparsApp.compra.detail.title">Compra</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ compra.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.compra.datacompra">Datacompra</span></dt>
+        <dd>
+          <span>{{ compra.datacompra | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.compra.idPedido">Id Pedido</span></dt>
+        <dd>
+          <span>{{ compra.idPedido }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.compra.quantidade">Quantidade</span></dt>
+        <dd>
+          <span>{{ compra.quantidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.compra.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'comparsApp.Status.' + compra.status }}">{{ compra.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="comparsApp.compra.usuario">Usuario</span></dt>
+        <dd>
+          <div *ngIf="compra.usuario">
+            <a [routerLink]="['/usuario', compra.usuario?.id, 'view']">{{ compra.usuario?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/compra', compra.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

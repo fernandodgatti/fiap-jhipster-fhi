@@ -41,6 +41,8 @@
     "packageFolder": "com/mycompany/myapp",
     "devServerPort": 4200,
     "clientPackageManager": "npm",
-    "languages": ["pt-br"]
+    "languages": ["pt-br"],
+    "entities": ["Compra", "Usuario", "Produto", "Supermercado"],
+    "lastLiquibaseTimestamp": 1626742314000
   }
 }

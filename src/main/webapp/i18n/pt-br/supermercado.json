@@ -1,0 +1,26 @@
+{
+  "comparsApp": {
+    "supermercado": {
+      "home": {
+        "title": "Supermercados",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Supermercado",
+        "createOrEditLabel": "Criar ou editar Supermercado",
+        "notFound": "Nenhum Supermercado encontrado"
+      },
+      "created": "Um novo Supermercado foi criado com o identificador {{ param }}",
+      "updated": "Um Supermercado foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Supermercado foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Supermercado {{ id }}?"
+      },
+      "detail": {
+        "title": "Supermercado"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "cnpj": "Cnpj",
+      "produto": "Produto"
+    }
+  }
+}
